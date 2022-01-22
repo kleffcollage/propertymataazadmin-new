@@ -10,6 +10,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { ArrowDownIcon } from '@chakra-ui/icons'
+import { FaRegBuilding, FaBell } from 'react-icons/fa';
 
 export default function ListingTabs({ children }: { children: React.ReactNode }) {
     return (
@@ -26,7 +27,7 @@ export default function ListingTabs({ children }: { children: React.ReactNode })
                     <Tab
                         _selected={{
                             color: "white",
-                            background: "brand.grey",
+                            background: "gray.200",
                             border: "0",
                         }}
                         borderTopRightRadius="3xl"
@@ -45,8 +46,8 @@ export default function ListingTabs({ children }: { children: React.ReactNode })
                     </Tab>
                     <Tab
                         _selected={{
-                            color: "white",
-                            background: "brand.grey",
+                            color: "gray.800",
+                            background: "gray.200",
                             border: "0",
                         }}
                         borderTopRightRadius="3xl"
@@ -56,25 +57,34 @@ export default function ListingTabs({ children }: { children: React.ReactNode })
                         justifyContent="space-between"
                     >
                         <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
-                            <ArrowDownIcon w={6} h={6} color="gray.800" />
+                            {/* <ArrowDownIcon w={6} h={6} color="gray.800" /> */}
+                            <FaBell />
                             <Box display="flex" alignItems="center" justifyContent="space-between" w={150}>
                                 <Text fontSize="md" color="gray.800" fontWeight="bold">Requests</Text>
                                 <Box w={50} borderRadius="50" bg="blue" color="white"> 0 </Box>
                             </Box>
                         </Box>
                     </Tab>
-                    
                     <Tab
                         _selected={{
-                        color: "white",
-                        background: "brand.blue",
-                        border: "0",
+                            color: "gray.800",
+                            background: "gray.200",
+                            border: "0",
                         }}
                         borderTopRightRadius="3xl"
                         background="brand.grey"
-                        width="100px"
+                        width="230px"
+                        alignItems="flex-start"
+                        justifyContent="space-between"
                     >
-                        Listings
+                        <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
+                            {/* <ArrowDownIcon w={6} h={6} color="gray.800" /> */}
+                            <FaRegBuilding />
+                            <Box display="flex" alignItems="center" justifyContent="space-between" w={150}>
+                                <Text fontSize="md" color="gray.800" fontWeight="bold">Listings</Text>
+                                <Box w={50} borderRadius="50" bg="blue" color="white"> 0 </Box>
+                            </Box>
+                        </Box>
                     </Tab>
                 </TabList>
                 
