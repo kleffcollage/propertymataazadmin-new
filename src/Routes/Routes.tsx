@@ -2,6 +2,7 @@ import React from "react";
 import Login from "../Components/Login/Login";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import Transaction from "../Pages/Transaction/Transaction";
+import Listing from "../Pages/Listing/Listing";
 import User from "../Pages/User/User";
 import { IRoutes } from "../Types/App/Types";
 
@@ -25,6 +26,11 @@ const Routes: IRoutes[] = [
     path: "/transactions",
     key: "TRANSACTIONS",
     element: <Transaction />,
+  },
+  {
+    path: "/listings",
+    key: "LISTINGS",
+    element: <Listing />,
   }
 ];
 

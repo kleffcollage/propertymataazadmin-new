@@ -21,6 +21,7 @@ interface FormInputProps {
   variant?: string;
   borderColor?: string;
   borderRadius?: string;
+  borderWidth?: string;
   placeholderColor?: string;
 }
 
@@ -49,6 +50,7 @@ export default function PrimaryInput({
           placeholder={placeholder}
           variant={variant}
           size="lg"
+          border="2px"
           borderColor={borderColor}
           borderRadius={borderRadius}
           _placeholder={{ color: placeholderColor }}
