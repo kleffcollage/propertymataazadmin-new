@@ -26,7 +26,6 @@ export default function Pagination({
 
   const paginate = async (direction: any) => {
     let url = "";
-
     if (direction === "next") {
       url = `?${data?.next?.href?.split("?")[1] as string}`;
       await getData(url);

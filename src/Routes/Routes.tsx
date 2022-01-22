@@ -1,5 +1,6 @@
 import React from "react";
 import Login from "../Components/Login/Login";
+import Admin from "../Pages/Admin/Admin";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import Transaction from "../Pages/Transaction/Transaction";
 import User from "../Pages/User/User";
@@ -25,6 +26,11 @@ const Routes: IRoutes[] = [
     path: "/transactions",
     key: "TRANSACTIONS",
     element: <Transaction />,
+  },
+  {
+    path: "/admin",
+    key: "ADMIN",
+    element: <Admin/>,
   }
 ];
 

@@ -29,14 +29,14 @@ export default function UserDetails({
       spacing="5"
     >
       <HStack>
-        <Avatar
-          src="https://bit.ly/2X3qQZH"
-          size="lg"
-          bg="primary"
-          name="Peter Omotosho"
-        />
+      <Avatar
+            name={user?.fullName ?? "user's name"}
+            bg="primary"
+            color="white"
+            src={user?.profilePicture ?? "https://bit.ly/broken-link"}
+          />
         <Heading as="h1" size="lg">
-          Peter Omotosho
+          {user?.fullName}
         </Heading>
       </HStack>
       <Tabs variant="enclosed" width="100%">

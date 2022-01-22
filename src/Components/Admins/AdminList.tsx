@@ -1,13 +1,20 @@
-import { Box, List, ListItem, Text, VStack } from "@chakra-ui/layout";
-import React, { useEffect } from "react";
-import { Input } from "@chakra-ui/input";
-import { InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
-import { PagedApiResponseData } from "../../Types/App/Types";
+import {
+  Box,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  List,
+  ListItem,
+  VStack,
+} from "@chakra-ui/react";
+import React, { useEffect } from "react";
 import { UserView } from "../../Types/api";
+import { PagedApiResponseData } from "../../Types/App/Types";
+import { Text } from "@chakra-ui/layout";
 import Pagination from "../Pagination/Pagination";
 
-export default function UserList({
+export default function AdminList({
   data,
   loading,
   getUsers,
@@ -20,8 +27,9 @@ export default function UserList({
 }) {
   console.log(data);
   useEffect(() => {
-    if (data) setSelectedUser(data.value[0]);
-  }, [data]);
+      if(data)
+      setSelectedUser(data.value[0]);
+  } , [data]);
   return (
     <VStack spacing={4} alignSelf="flex-start">
       <VStack
