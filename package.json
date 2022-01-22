@@ -3,24 +3,42 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chakra-ui/icons": "^1.1.1",
+    "@chakra-ui/react": "^1.7.2",
+    "@emotion/react": "^11.7.0",
+    "@emotion/styled": "^11.6.0",
+    "@hookform/resolvers": "^2.8.3",
     "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "@types/jest": "^26.0.24",
-    "@types/node": "^12.20.37",
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
+    "framer-motion": "^4.1.17",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-hook-form": "^7.20.4",
+    "react-icons": "^4.3.1",
+    "react-openapi-client": "^0.2.2",
+    "react-router-dom": "^6.0.2",
     "react-scripts": "4.0.3",
-    "typescript": "^4.5.2",
-    "web-vitals": "^1.1.2"
+    "restful-react": "^15.9.4",
+    "web-vitals": "^1.1.2",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "schema:fetch": "node ./script/fetch-schema.js",
+    "schema:hooks": "openapi --input ./src/types/api-schema.json --output ./src/types",
+    "schema:generate": "node ./script/schema-codegen.js --srcPath ./src/types/api-schema.json --destPath ./src/types/api --separatedFiles true",
+    "schema:codegen": "npm run schema:fetch && npm run schema:generate",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "types:openapi": "openapi -i https://propertymataazapi.herokuapp.com/swagger/v1/swagger.json -o src/services/openapi",
+    "generate-fetcher": "restful-react import --file ./src/types/api-schema.json --output ./src/types/FETCHERS.tsx"
   },
   "eslintConfig": {
     "extends": [
@@ -39,5 +57,31 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/eslint-parser": "^7.16.3",
+    "@babel/preset-react": "^7.16.0",
+    "@codegena/oapi3ts-cli": "^2.1.10-alpha.8",
+    "@jbcz/openapi-hooks-codegen": "0.0.41",
+    "@types/node": "^16.11.10",
+    "@types/styled-components": "^5.1.14",
+    "@typescript-eslint/eslint-plugin": "^4.33.0",
+    "@typescript-eslint/parser": "^4.33.0",
+    "axios": "^0.23.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-airbnb-typescript": "^14.0.2",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-wesbos": "^2.1.0",
+    "eslint-plugin-html": "^6.2.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "openapi-typescript-codegen": "^0.13.0",
+    "prettier": "^2.5.0",
+    "typescript": "^4.5.2"
   }
 }
