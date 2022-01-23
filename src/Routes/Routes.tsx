@@ -3,6 +3,7 @@ import Login from "../Components/Login/Login";
 import Admin from "../Pages/Admin/Admin";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import Transaction from "../Pages/Transaction/Transaction";
+import Listing from "../Pages/Listing/Listing";
 import User from "../Pages/User/User";
 import { IRoutes } from "../Types/App/Types";
 
@@ -30,8 +31,13 @@ const Routes: IRoutes[] = [
   {
     path: "/admin",
     key: "ADMIN",
-    element: <Admin/>,
-  }
+    element: <Admin />,
+  },
+  {
+    path: "/listings",
+    key: "LISTINGS",
+    element: <Listing />,
+  },
 ];
 
 export default Routes;
