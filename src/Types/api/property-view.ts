@@ -15,6 +15,7 @@ export interface PropertyView {
   numberOfBathrooms?: number;
   isDraft?: boolean;
   isActive?: boolean;
+  rejectionReason?: null | string;
   isForRent?: boolean;
   isForSale?: boolean;
   area?: null | string;

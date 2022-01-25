@@ -1,7 +1,7 @@
 /* tslint:disable */
-import { UserEnquiryViewPagedCollectionStandardResponse } from './user-enquiry-view-paged-collection-standard-response';
+import { TenancyViewStandardResponse } from './tenancy-view-standard-response';
 
-export type AdminenquirieslistResponse<
+export type TenancyrenewabletoggleIdResponse<
   TCode extends 200 = 200,
   TContentType extends 'text/plain' | 'application/json' | 'text/json' =
     | 'text/plain'
@@ -9,10 +9,10 @@ export type AdminenquirieslistResponse<
     | 'text/json'
 > = TCode extends 200
   ? TContentType extends 'text/plain'
-    ? UserEnquiryViewPagedCollectionStandardResponse
+    ? TenancyViewStandardResponse
     : TContentType extends 'application/json'
-    ? UserEnquiryViewPagedCollectionStandardResponse
+    ? TenancyViewStandardResponse
     : TContentType extends 'text/json'
-    ? UserEnquiryViewPagedCollectionStandardResponse
+    ? TenancyViewStandardResponse
     : any
   : any;

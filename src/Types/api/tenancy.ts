@@ -16,6 +16,7 @@ export interface Tenancy {
   property?: Property;
   transactionId?: number;
   transaction?: Transaction;
+  renewable?: boolean;
   rentDueDate?: string;
   statusId?: number;
   status?: Status;

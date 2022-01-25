@@ -45,6 +45,7 @@ export interface Property {
   enquiries?: number;
   longitude?: number;
   latitude?: number;
+  rejectionReason?: null | string;
   userEnquiries?: null | Array<UserEnquiry>;
   tenantTypeId?: null | number;
   tenantType?: TenantType;

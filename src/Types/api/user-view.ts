@@ -8,8 +8,10 @@ export interface UserView {
   fullName?: null | string;
   firstName?: null | string;
   lastName?: null | string;
+  companyName?: null | string;
   token?: null | string;
   phoneNumber?: null | string;
+  phoneNumber1?: null | string;
   properties?: null | Array<PropertyView>;
   passportPhotograph?: MediaView;
   workId?: MediaView;

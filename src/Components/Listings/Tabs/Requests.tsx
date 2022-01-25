@@ -17,8 +17,8 @@ import { SearchIcon } from "@chakra-ui/icons";
 
 function RequestsTable() {
     return (
-        <Box display="flex" flexDirection="column">
-            <InputGroup w={280} border="2px" borderColor="gray.700" borderRadius="base" my={3}>
+        <Box display="flex" flexDirection="column" width="100%">
+            <InputGroup w={280} border="2px" borderColor="gray.700" borderRadius="base" my={3} width='100%'>
                 <InputLeftElement
                     pointerEvents="none"
                     children={<SearchIcon color="gray.800" />}

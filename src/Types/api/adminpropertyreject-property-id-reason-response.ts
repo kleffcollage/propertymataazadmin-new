@@ -1,7 +1,7 @@
 /* tslint:disable */
-import { UserEnquiryViewPagedCollectionStandardResponse } from './user-enquiry-view-paged-collection-standard-response';
+import { PropertyViewStandardResponse } from './property-view-standard-response';
 
-export type AdminenquirieslistResponse<
+export type AdminpropertyrejectPropertyIdReasonResponse<
   TCode extends 200 = 200,
   TContentType extends 'text/plain' | 'application/json' | 'text/json' =
     | 'text/plain'
@@ -9,10 +9,10 @@ export type AdminenquirieslistResponse<
     | 'text/json'
 > = TCode extends 200
   ? TContentType extends 'text/plain'
-    ? UserEnquiryViewPagedCollectionStandardResponse
+    ? PropertyViewStandardResponse
     : TContentType extends 'application/json'
-    ? UserEnquiryViewPagedCollectionStandardResponse
+    ? PropertyViewStandardResponse
     : TContentType extends 'text/json'
-    ? UserEnquiryViewPagedCollectionStandardResponse
+    ? PropertyViewStandardResponse
     : any
   : any;

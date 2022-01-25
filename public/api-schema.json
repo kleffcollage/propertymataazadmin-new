@@ -622,12 +622,12 @@
         }
       }
     },
-    "/api/Admin/property/reject/{propertyId}": {
+    "/api/Admin/property/reject/{propertyId}/{reason}": {
       "get": {
         "tags": [
           "Admin"
         ],
-        "operationId": "Adminpropertyreject{propertyId}",
+        "operationId": "Adminpropertyreject{propertyId}{reason}",
         "parameters": [
           {
             "name": "propertyId",
@@ -636,6 +636,15 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "reason",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
             }
           }
         ],
@@ -923,17 +932,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserEnquiryPagedCollectionStandardResponse"
+                  "$ref": "#/components/schemas/UserEnquiryViewPagedCollectionStandardResponse"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserEnquiryPagedCollectionStandardResponse"
+                  "$ref": "#/components/schemas/UserEnquiryViewPagedCollectionStandardResponse"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserEnquiryPagedCollectionStandardResponse"
+                  "$ref": "#/components/schemas/UserEnquiryViewPagedCollectionStandardResponse"
                 }
               }
             }
@@ -3452,6 +3461,47 @@
         }
       }
     },
+    "/api/Property/inspectiondates/delete/{id}": {
+      "get": {
+        "tags": [
+          "Property"
+        ],
+        "operationId": "Propertyinspectiondatesdelete{id}",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BooleanStandardResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BooleanStandardResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BooleanStandardResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Property/inspectiontime/create": {
       "post": {
         "tags": [
@@ -4472,6 +4522,47 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/StringStandardResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Tenancy/renewable/toggle/{id}": {
+      "post": {
+        "tags": [
+          "Tenancy"
+        ],
+        "operationId": "Tenancyrenewabletoggle{id}",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenancyViewStandardResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenancyViewStandardResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenancyViewStandardResponse"
                 }
               }
             }
@@ -5619,6 +5710,9 @@
           "transaction": {
             "$ref": "#/components/schemas/Transaction"
           },
+          "renewable": {
+            "type": "boolean"
+          },
           "rentDueDate": {
             "type": "string",
             "format": "date-time"
@@ -6047,6 +6141,10 @@
           "latitude": {
             "type": "number",
             "format": "double"
+          },
+          "rejectionReason": {
+            "type": "string",
+            "nullable": true
           },
           "userEnquiries": {
             "type": "array",
@@ -6514,6 +6612,14 @@
             "type": "string",
             "nullable": true
           },
+          "phoneNumber1": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyName": {
+            "type": "string",
+            "nullable": true
+          },
           "dateCreated": {
             "type": "string",
             "format": "date-time"
@@ -6724,6 +6830,10 @@
           "isActive": {
             "type": "boolean"
           },
+          "rejectionReason": {
+            "type": "string",
+            "nullable": true
+          },
           "isForRent": {
             "type": "boolean"
           },
@@ -6819,11 +6929,19 @@
             "type": "string",
             "nullable": true
           },
+          "companyName": {
+            "type": "string",
+            "nullable": true
+          },
           "token": {
             "type": "string",
             "nullable": true
           },
           "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber1": {
             "type": "string",
             "nullable": true
           },
@@ -6986,6 +7104,10 @@
             "type": "string",
             "nullable": true
           },
+          "phoneNumber1": {
+            "type": "string",
+            "nullable": true
+          },
           "address": {
             "type": "string",
             "nullable": true
@@ -7007,6 +7129,10 @@
             "nullable": true
           },
           "occupation": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyName": {
             "type": "string",
             "nullable": true
           },
@@ -8034,7 +8160,110 @@
         },
         "additionalProperties": false
       },
-      "UserEnquiryPagedCollection": {
+      "InspectionTimeView": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "available": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "InspectionDateView": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "times": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InspectionTimeView"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InspectionView": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "inspectionTime": {
+            "$ref": "#/components/schemas/InspectionTimeView"
+          },
+          "inspectionDate": {
+            "$ref": "#/components/schemas/InspectionDateView"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserEnquiryView": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "propertyId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "propertyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "fullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "lga": {
+            "type": "string",
+            "nullable": true
+          },
+          "area": {
+            "type": "string",
+            "nullable": true
+          },
+          "dateCreated": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "inspection": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InspectionView"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserEnquiryViewPagedCollection": {
         "type": "object",
         "properties": {
           "offset": {
@@ -8069,14 +8298,14 @@
           "value": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/UserEnquiry"
+              "$ref": "#/components/schemas/UserEnquiryView"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "UserEnquiryPagedCollectionStandardResponse": {
+      "UserEnquiryViewPagedCollectionStandardResponse": {
         "type": "object",
         "properties": {
           "href": {
@@ -8110,7 +8339,7 @@
             "nullable": true
           },
           "data": {
-            "$ref": "#/components/schemas/UserEnquiryPagedCollection"
+            "$ref": "#/components/schemas/UserEnquiryViewPagedCollection"
           },
           "statusCode": {
             "type": "string",
@@ -8248,6 +8477,10 @@
       "TenancyView": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
           "tenant": {
             "$ref": "#/components/schemas/User"
           },
@@ -8267,6 +8500,9 @@
           "status": {
             "type": "string",
             "nullable": true
+          },
+          "renewable": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -9668,44 +9904,6 @@
         },
         "additionalProperties": false
       },
-      "InspectionTimeView": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "time": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "available": {
-            "type": "boolean"
-          }
-        },
-        "additionalProperties": false
-      },
-      "InspectionDateView": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "date": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "times": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/InspectionTimeView"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "InspectionDateViewStandardResponse": {
         "type": "object",
         "properties": {
@@ -9920,22 +10118,6 @@
           "propertyId": {
             "type": "integer",
             "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
-      "InspectionView": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "inspectionTime": {
-            "$ref": "#/components/schemas/InspectionTimeView"
-          },
-          "inspectionDate": {
-            "$ref": "#/components/schemas/InspectionDateView"
           }
         },
         "additionalProperties": false
@@ -10387,6 +10569,52 @@
         },
         "additionalProperties": false
       },
+      "TenancyViewStandardResponse": {
+        "type": "object",
+        "properties": {
+          "href": {
+            "type": "string",
+            "nullable": true
+          },
+          "relations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "method": {
+            "type": "string",
+            "default": "GET",
+            "nullable": true
+          },
+          "routeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "routeValues": {
+            "nullable": true
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/TenancyView"
+          },
+          "statusCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "errors": {
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "PasswordReset": {
         "type": "object",
         "properties": {
@@ -10396,6 +10624,94 @@
           },
           "newPassword": {
             "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserEnquiryPagedCollection": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "limit": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "first": {
+            "$ref": "#/components/schemas/Link"
+          },
+          "previous": {
+            "$ref": "#/components/schemas/Link"
+          },
+          "next": {
+            "$ref": "#/components/schemas/Link"
+          },
+          "last": {
+            "$ref": "#/components/schemas/Link"
+          },
+          "self": {
+            "$ref": "#/components/schemas/Link"
+          },
+          "value": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserEnquiry"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserEnquiryPagedCollectionStandardResponse": {
+        "type": "object",
+        "properties": {
+          "href": {
+            "type": "string",
+            "nullable": true
+          },
+          "relations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "method": {
+            "type": "string",
+            "default": "GET",
+            "nullable": true
+          },
+          "routeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "routeValues": {
+            "nullable": true
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/UserEnquiryPagedCollection"
+          },
+          "statusCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "errors": {
             "nullable": true
           }
         },

@@ -6,7 +6,14 @@ import { UserView } from "../../Types/api";
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "./theme";
 import { OpenAPIProvider } from "react-openapi-client";
-import schema from '../../Types/api-schema.json';
+import schema from "../../Types/api-schema.json";
+import {
+  ThemeProvider,
+  createTheme,
+  makeStyles,
+} from "@material-ui/core/styles";
+
+const muitheme = createTheme();
 
 function App() {
   const [data, setData] = useState({});
@@ -20,11 +27,11 @@ function App() {
   );
 
   const headers: HeadersInit = {
-		cor: "no-cors",
-		Authorization: `Bearer ${
-			localStorage.getItem("token") ? localStorage.getItem("token") : ""
-		}`,
-	};
+    cor: "no-cors",
+    Authorization: `Bearer ${
+      localStorage.getItem("token") ? localStorage.getItem("token") : ""
+    }`,
+  };
 
   useEffect(() => {
     localStorage.getItem("user")
@@ -38,11 +45,17 @@ function App() {
       <OpenAPIProvider
         definition={
           // "https://propertymataazapi.herokuapp.com/swagger/v1/swagger.json"
-          '/api-schema.json'
+          "/api-schema.json"
         }
-        axiosConfigDefaults={{ withCredentials: true,headers,baseURL: 'https://propertymataazapi.herokuapp.com/' }}
+        axiosConfigDefaults={{
+          withCredentials: true,
+          headers,
+          baseURL: "https://propertymataazapi.herokuapp.com/",
+        }}
       >
-        <ChakraProvider theme={theme}>{elements}</ChakraProvider>
+        <ThemeProvider theme={muitheme}>
+          <ChakraProvider theme={theme}>{elements}</ChakraProvider>
+        </ThemeProvider>
       </OpenAPIProvider>
     </MainContext.Provider>
   );

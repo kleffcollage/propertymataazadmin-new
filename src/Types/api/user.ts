@@ -32,6 +32,8 @@ export interface User {
   lastName: string;
   password: string;
   token?: null | string;
+  phoneNumber1?: null | string;
+  companyName?: null | string;
   dateCreated?: string;
   dateModified?: string;
   codes?: null | Array<Code>;

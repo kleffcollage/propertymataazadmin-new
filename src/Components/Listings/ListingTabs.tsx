@@ -12,7 +12,7 @@ import {
 import { ArrowDownIcon } from '@chakra-ui/icons'
 import { FaRegBuilding, FaBell } from 'react-icons/fa';
 
-export default function ListingTabs({ children }: { children: React.ReactNode }) {
+export default function ListingTabs({ children,enquiryCount,propertyCount,requestCount }: { children: React.ReactNode,enquiryCount:number,propertyCount:number,requestCount:number }) {
     return (
         <VStack
             alignItems="flex-start"
@@ -40,7 +40,7 @@ export default function ListingTabs({ children }: { children: React.ReactNode })
                             <ArrowDownIcon w={6} h={6} color="gray.800" />
                             <Box display="flex" alignItems="center" justifyContent="space-between" w={150}>
                                 <Text fontSize="md" color="gray.800" fontWeight="bold">Enquiries</Text>
-                                <Box w={50} borderRadius="50" bg="blue" color="white"> 0 </Box>
+                                <Box w={50} borderRadius="50" bg="blue" color="white"> {enquiryCount} </Box>
                             </Box>
                         </Box>
                     </Tab>
@@ -61,7 +61,7 @@ export default function ListingTabs({ children }: { children: React.ReactNode })
                             <FaBell />
                             <Box display="flex" alignItems="center" justifyContent="space-between" w={150}>
                                 <Text fontSize="md" color="gray.800" fontWeight="bold">Requests</Text>
-                                <Box w={50} borderRadius="50" bg="blue" color="white"> 0 </Box>
+                                <Box w={50} borderRadius="50" bg="blue" color="white"> {requestCount} </Box>
                             </Box>
                         </Box>
                     </Tab>
@@ -82,7 +82,7 @@ export default function ListingTabs({ children }: { children: React.ReactNode })
                             <FaRegBuilding />
                             <Box display="flex" alignItems="center" justifyContent="space-between" w={150}>
                                 <Text fontSize="md" color="gray.800" fontWeight="bold">Listings</Text>
-                                <Box w={50} borderRadius="50" bg="blue" color="white"> 0 </Box>
+                                <Box w={50} borderRadius="50" bg="blue" color="white"> {propertyCount} </Box>
                             </Box>
                         </Box>
                     </Tab>
